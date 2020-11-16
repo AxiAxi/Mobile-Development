@@ -9,3 +9,5 @@
 [Programming assignment 3] During the development process no problems were faced.
 
 [Programming assignment 4] During the development process no problems were faced.
+
+[Programming assignment 4 clip](/examples/PA4.mp4)
