@@ -1,39 +1,36 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableHighlight, StyleSheet } from 'react-native';
+import { Divider } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
+import { getPoster } from '../assets/Posters';
 
-const getPoster = (posterId) => {
-    switch (posterId) {
-        case 'Poster_01.jpg': return require('../assets/Posters/Poster_01.jpg');
-        case 'Poster_02.jpg': return require('../assets/Posters/Poster_02.jpg');
-        case 'Poster_03.jpg': return require('../assets/Posters/Poster_03.jpg');
-        case 'Poster_05.jpg': return require('../assets/Posters/Poster_05.jpg');
-        case 'Poster_06.jpg': return require('../assets/Posters/Poster_06.jpg');
-        case 'Poster_07.jpg': return require('../assets/Posters/Poster_07.jpg');
-        case 'Poster_08.jpg': return require('../assets/Posters/Poster_08.jpg');
-        case 'Poster_10.jpg': return require('../assets/Posters/Poster_10.jpg');
-        default: return null;
+export default function Movie({ title, year, type, poster, imdbID }) {
+    const navigation = useNavigation();
+    
+    const navigateToFullMovie = () => {
+        navigation.navigate('Full movie', { imdbID });
     };
-};
-
-export default function Movie({ title, year, type, poster }) {
+    
     return (
-        <View style={styles.wrapper}>
-            <Image style={styles.poster} source={getPoster(poster)}></Image>
-            <View style={styles.info}>
-                <Text style={styles.text}>{title}</Text>
-                <Text style={styles.text}>{year}</Text>
-                <Text style={styles.text}>{type}</Text>
+        <TouchableHighlight onPress={navigateToFullMovie} underlayColor="#fff" activeOpacity={0.75}>
+            <View style={styles.wrapper}>
+                <Image style={styles.poster} source={getPoster(poster)}  onPress={navigateToFullMovie} />
+                <View style={styles.info}>
+                    <Text style={styles.text}>{title}</Text>
+                    <Text style={styles.text}>{year}</Text>
+                    <Text style={styles.text}>{type}</Text>
+                    <Divider style={styles.divider} />
+                </View>
             </View>
-        </View>
+        </TouchableHighlight>
     );
 };
 
 const styles = StyleSheet.create({
     wrapper: {
-        flexDirection: 'row',
+        flexDirection: "row",
         margin: 1.5,
-        padding: 20,
-        borderBottomWidth: .2,
+        padding: 20
     },
     poster: {
         width: 85,
@@ -41,9 +38,12 @@ const styles = StyleSheet.create({
     },
     info: {
         flex: 1,
-        marginLeft: 15,
+        marginLeft: 15
     },
     text: {
         marginBottom: 5
+    },
+    divider: {
+        backgroundColor: "#000"
     }
 });
