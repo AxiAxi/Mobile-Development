@@ -5,8 +5,8 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function Home() {
     return (
         <View style={styles.container}>
-            <Text>Mobile Development Project</Text>
-            <Text>Author: Maksym Hubenko. IV-72</Text>
+            <Text style={{ fontStyle: "italic" }}>Mobile Development Project</Text>
+            <Text style={{ fontStyle: "italic" }}>Author: Maksym Hubenko. IV-72</Text>
             <StatusBar style="auto" />
         </View>
     );

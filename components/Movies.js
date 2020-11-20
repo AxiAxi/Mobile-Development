@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     noItems: {
         alignSelf: "center",
         height: "100%",
-        lineHeight: 75
+        lineHeight: 75,
+        fontStyle: "italic"
     }
 });

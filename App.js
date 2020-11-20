@@ -2,21 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { saveFileAsync, loadFileAsync } from './utils/fs';
+import { loadFileAsync } from './utils/fs';
 import { removeItemByProp } from './utils/utils';
 import Home from './components/Home';
 import Movies from './components/Movies';
 import NewRecord from './components/NewRecord';
 import FullMovie from './components/FullMovie';
+import Gallery from './components/Gallery';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 const MoviesStack = createStackNavigator();
 
 export default function App() {
   const [moviesList, setMoviesList] = useState([]);
+  const [galleryBadge, setGalleryBadge] = useState(0);
   
   useEffect(() => {
     (async () => {
@@ -36,6 +39,8 @@ export default function App() {
         return <MaterialCommunityIcons name="library-movie" size={activeSize} color={color} />;
       } else if (route.name === 'Add movie') {
         return <MaterialIcons name="library-add" size={activeSize} color={color} />
+      } else if (route.name === 'Gallery') {
+        return <Ionicons name="ios-images" size={activeSize} color={color} />
       };
     }
   });
@@ -48,9 +53,18 @@ export default function App() {
     setMoviesList(prev => [...prev, movie]);
   };
   
+  const badgeHandler = (badgeValue, setBadge) => {
+    setBadge(badgeValue);
+  };
+  
   const MoviesStackScreen = () => (
     <MoviesStack.Navigator>
-      <MoviesStack.Screen name="Movies" children={() => (<Movies list={moviesList} removeItemFromList={removeMovieFromList} />)} />
+      <MoviesStack.Screen name="Movies" children={() => (
+        <Movies
+          list={moviesList}
+          removeItemFromList={removeMovieFromList}
+        />
+      )} />
       <MoviesStack.Screen name="Full movie" component={FullMovie} />
     </MoviesStack.Navigator>
   );
@@ -64,7 +78,11 @@ export default function App() {
           activeTintColor: "#2288dc"
         }}>
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Movies" component={MoviesStackScreen} />
+        <Tab.Screen name="Gallery" children={() => (
+          <Gallery
+            badgeHandler={(badgeValue) => badgeHandler(badgeValue, setGalleryBadge)} />)}
+            options={{ tabBarBadge: galleryBadge, tabBarBadgeStyle: { backgroundColor: "#2288dc", color: "#fff" } }} />
+        <Tab.Screen name="Movies" component={MoviesStackScreen} options={{ tabBarBadge: moviesList.length + 1, tabBarBadgeStyle: { backgroundColor: "#2288dc", color: "#fff" } }} />
         <Tab.Screen name="Add movie" children={() => (<NewRecord addItemToList={addMovieToList} />)} />
       </Tab.Navigator>
     </NavigationContainer>
