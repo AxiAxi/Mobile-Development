@@ -2,6 +2,7 @@
 
 ## Maksym Hubenko. IV-72. Variation = 7206 % 6 = 0
 
+## Assignments
 * [Programming assignment 1](#programming-assignment-1)
 * [Programming assignment 2](#programming-assignment-2)
 * [Programming assignment 3](#programming-assignment-3)
@@ -11,6 +12,7 @@
 * [Programming assignment 5](#programming-assignment-5)
   - [Examples](#examples)
   - [Bonus](#bonus)
+* [Programming assignment 6](#programming-assignment-6)
 
 ## Programming assignment 1
 During the development process no problems were faced.
@@ -42,3 +44,8 @@ During the development process no problems were faced.
 
 #### Bonus
 <img src="/examples/Bonus.gif" width="500" />
+
+## Programming assignment 6
+During the development process no problems were faced.
+
+<img src="/examples/PA6.gif" width="500" />
