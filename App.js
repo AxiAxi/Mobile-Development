@@ -9,6 +9,7 @@ import Movies from './components/Movies';
 import NewRecord from './components/NewRecord';
 import FullMovie from './components/FullMovie';
 import Gallery from './components/Gallery';
+import Drawing from './components/Drawing';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -41,6 +42,8 @@ export default function App() {
         return <MaterialIcons name="library-add" size={activeSize} color={color} />
       } else if (route.name === 'Gallery') {
         return <Ionicons name="ios-images" size={activeSize} color={color} />
+      } else if (route.name === 'Drawing') {
+        return <MaterialCommunityIcons name="draw" size={activeSize} color={color} />
       };
     }
   });
@@ -84,6 +87,7 @@ export default function App() {
             options={{ tabBarBadge: galleryBadge, tabBarBadgeStyle: { backgroundColor: "#2288dc", color: "#fff" } }} />
         <Tab.Screen name="Movies" component={MoviesStackScreen} options={{ tabBarBadge: moviesList.length + 1, tabBarBadgeStyle: { backgroundColor: "#2288dc", color: "#fff" } }} />
         <Tab.Screen name="Add movie" children={() => (<NewRecord addItemToList={addMovieToList} />)} />
+        <Tab.Screen name="Drawing" component={Drawing} />
       </Tab.Navigator>
     </NavigationContainer>
   );
