@@ -10,11 +10,11 @@
   - [Portrait view examples](#portrait-view-examples)
   - [Landscape view examples](#landscape-view-examples)
 * [Programming assignment 5](#programming-assignment-5)
-  - [Examples](#examples)
+  - [Examples for assignment 5](#examples-for-assignment-5)
   - [Bonus](#bonus)
 * [Programming assignment 6](#programming-assignment-6)
 * [Programming assignment 7](#programming-assignment-7)
-  - [Examples](#examples)
+  - [Examples for assignment 7](#examples-for-assignment-7)
 
 ## Programming assignment 1
 During the development process no problems were faced.
@@ -39,7 +39,7 @@ During the development process no problems were faced.
 ## Programming assignment 5
 During the development process no problems were faced.
 
-#### Examples
+#### Examples for assignment 5
 <img src="/examples/PA5_A.gif" width="500" />
 <img src="/examples/PA5_B.gif" width="500" />
 <img src="/examples/PA5_C.gif" width="500" />
@@ -55,7 +55,7 @@ During the development process no problems were faced.
 ## Programming assignment 7
 During the development process no problems were faced.
 
-#### Examples
+#### Examples for assignment 7
 <img src="/examples/PA7_A.gif" width="500" />
 <img src="/examples/PA7_B.gif" width="500" />
 <img src="/examples/PA7_C.gif" width="500" />
