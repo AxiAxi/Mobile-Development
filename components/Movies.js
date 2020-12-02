@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, TextInput, SafeAreaView, ScrollView, FlatList, TouchableHighlight, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import { removeItemByProp } from '../utils/utils';
@@ -7,15 +7,26 @@ import Movie from './Movie';
 
 export default function Movies({ list, removeItemFromList }) {
     const [query, setQuery] = useState('');
-    const [listOnQuery, setListOnQuery] = useState([...list]);
-
+    const [listOnQuery, setListOnQuery] = useState([]);
+    const [responseStatus, setResponseStatus] = useState('');
+    
+    useEffect(() => {
+        const formattedQuery = query.trim().toLowerCase();
+        
+        if (formattedQuery.length >= 3) {
+            const url = `http://www.omdbapi.com/?apikey=7e9fe69e&s=${formattedQuery}&page=1`;
+            
+            (async () => {
+                const fetchResult = await fetch(url);
+                const loadedData = await fetchResult.json();
+                setListOnQuery(loadedData['Search']);
+                setResponseStatus(loadedData['Response']);
+            })();
+        };
+    }, [query]);
+    
     const handleQuery = (query) => {
         setQuery(query);
-
-        const formattedQuery = query.trim().toLowerCase();
-        const filteredList = list.filter(movie => movie['Title'].toLowerCase().includes(formattedQuery));
-
-        setListOnQuery(filteredList);
     };
     
     const removeMovieFromList = (imdbID) => {
@@ -71,7 +82,7 @@ export default function Movies({ list, removeItemFromList }) {
                     value={query}
                     onChangeText={queryText => handleQuery(queryText)}
                 />
-                {listOnQuery.length !== 0 ? listOnRender : <Text style={styles.noItems}>No items found</Text>}
+                {listOnQuery?.length !== 0 && responseStatus !== 'False' ? listOnRender : <Text style={styles.noItems}>No items found</Text>}
             </SafeAreaView>
         </ScrollView>
     );

@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Image, ScrollView, StyleSheet } from 'react-native';
+import { Text, ScrollView, StyleSheet } from 'react-native';
 import { Divider } from 'react-native-elements';
-import { loadFileAsync } from '../utils/fs';
-import { getPoster } from '../assets/Posters';
+import Loader from './Loader';
+import Image from 'react-native-image-progress';
 
 export default function FullMovie({ route }) {
     const { imdbID } = route.params;
     const [fullMovie, setFullMovie] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
     
     useEffect(() => {
+        const url = `http://www.omdbapi.com/?apikey=7e9fe69e&i=${imdbID}`;
+        
         (async () => {
-            const loadedData = await loadFileAsync(`${imdbID}.txt`);
+            setIsLoading(true);
+            const fetchResult = await fetch(url);
+            const loadedData = await fetchResult.json();
             setFullMovie(loadedData);
+            setIsLoading(false);
         })();
     }, []);
-    
-    return (
+
+    const fullMovieView = (
         <ScrollView style={styles.container}>
-            <Image style={styles.poster} source={getPoster(fullMovie['Poster'])} />
+            <Image style={styles.poster} source={{ uri: fullMovie['Poster'] }} indicator={Loader} threshold={150} />
             <Text><Text style={styles.title}>Title: </Text>"{fullMovie['Title'] || '?'}"</Text>
             <Text><Text style={styles.title}>Year: </Text>{fullMovie['Year'] || '?'}</Text>
             <Text><Text style={styles.title} style={styles.title}>Genre: </Text>{fullMovie['Genre'] || '?'}</Text>
@@ -39,6 +45,8 @@ export default function FullMovie({ route }) {
             <Text style={styles.footer}><Text style={styles.title}>Plot: </Text>{fullMovie['Plot'] || '?'}</Text>
         </ScrollView>
     );
+    
+    return isLoading ? <Loader /> : fullMovieView;
 };
 
 const styles = StyleSheet.create({

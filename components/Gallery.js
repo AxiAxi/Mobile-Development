@@ -22,6 +22,19 @@ export default function Gallery({ badgeHandler }) {
   });
   
   useEffect(() => {
+    const url = `https://pixabay.com/api/?key=19193969-87191e5db266905fe8936d565&q=yellow+flowers&image_type=photo&per_page=27`;
+    
+    (async () => {
+      const fetchResult = await fetch(url);
+      const loadedData = await fetchResult.json();
+      const loadedDataURIs = loadedData['hits'].map((lD) => ({ uri: lD['largeImageURL'] }));
+      setGallery(loadedDataURIs);
+    })();
+  }, []);
+  
+  useEffect(() => badgeHandler(gallery.length));
+  
+  useEffect(() => {
     (async () => {
       const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
       

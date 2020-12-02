@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Loader from './Loader';
+import Image from 'react-native-image-progress';
 
 export default function SubGallery({ gallery, w, h }) {
     const p = { width: w, height: h};
     const p2 = { width: w * 2, height: h * 2};
 
     const SGImage = (uri, cl = p) => (
-        <Image style={cl} source={uri} />
+        <Image style={cl} source={uri} indicator={Loader} threshold={150} />
     );
     
     return (

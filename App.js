@@ -85,7 +85,7 @@ export default function App() {
           <Gallery
             badgeHandler={(badgeValue) => badgeHandler(badgeValue, setGalleryBadge)} />)}
             options={{ tabBarBadge: galleryBadge, tabBarBadgeStyle: { backgroundColor: "#2288dc", color: "#fff" } }} />
-        <Tab.Screen name="Movies" component={MoviesStackScreen} options={{ tabBarBadge: moviesList.length + 1, tabBarBadgeStyle: { backgroundColor: "#2288dc", color: "#fff" } }} />
+        <Tab.Screen name="Movies" component={MoviesStackScreen} options={{ tabBarBadgeStyle: { backgroundColor: "#2288dc", color: "#fff" } }} />
         <Tab.Screen name="Add movie" children={() => (<NewRecord addItemToList={addMovieToList} />)} />
         <Tab.Screen name="Drawing" component={Drawing} />
       </Tab.Navigator>
