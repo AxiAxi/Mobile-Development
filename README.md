@@ -13,6 +13,8 @@
   - [Examples](#examples)
   - [Bonus](#bonus)
 * [Programming assignment 6](#programming-assignment-6)
+* [Programming assignment 7](#programming-assignment-7)
+  - [Examples](#examples)
 
 ## Programming assignment 1
 During the development process no problems were faced.
@@ -49,3 +51,11 @@ During the development process no problems were faced.
 During the development process no problems were faced.
 
 <img src="/examples/PA6.gif" width="500" />
+
+## Programming assignment 7
+During the development process no problems were faced.
+
+#### Examples
+<img src="/examples/PA7_A.gif" width="500" />
+<img src="/examples/PA7_B.gif" width="500" />
+<img src="/examples/PA7_C.gif" width="500" />
